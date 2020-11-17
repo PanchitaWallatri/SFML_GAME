@@ -1,25 +1,26 @@
 #pragma once
-
-#include <iostream>
+/*#include <iostream>
 #include <SFML/Audio.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include <ctime>
+#include <ctime>*/
 
-#include "Player.h"
-#include "animations.h"
-//#include "Enermy.h"
+#include "player.h"
+//#include "animations.h"
+#include "enermy.h"
 //#include "object.h"
+#include<map>
+#include<sstream>
 
-class game
+/*class game
 {
 private:
 
 	//Variable
-	/*float spawnTimer;
-	float spawnTimerMax;*/
+	float spawnTimer;
+	float spawnTimerMax;
 
 	sf::Vector2u imageCount;
 
@@ -36,7 +37,7 @@ private:
 	void pollEvent();
 	void titleWindow();
 	void titlePlayer();
-	//void titleEnermy();
+	void titleEnermy();
 	//void titleObject();
 	//void titleFont();
 	//void titleText();
@@ -44,13 +45,13 @@ private:
 
 	//Game objects
 
-	//std::vector<Enermy*> enemies;
-	//Enermy* enermy;
+	std::vector<Enermy*> enemies;
+	Enermy* enermy;
 	Player* player;
 	//object* Object;
 
 	sf::RectangleShape* bg1;
-	sf::Texture bodyTexture, enermyTexture, sandbarTexture, bgTexture;
+	sf::Texture bodyTexture, enermyTexture, bgTexture;
 	sf::Sprite* body, enermy1;
 
 public:
@@ -77,4 +78,87 @@ public:
 	void updateCollision();
 
 
+};*/
+
+class Game
+{
+private:
+	//window
+	sf::RenderWindow* window;
+	//player
+	Player* player;
+
+	//Enemy
+	float spawnTimer;
+	float spawnTimerMax;
+
+
+	std::vector<Enemy*> enemies;
+	std::vector<Enemy*> items;
+
+	
+
+	//item_recover
+	float spawnTimerItem;
+	float spawnTimerItemMax;
+
+	std::map<std::string, sf::Texture*> texture;
+	//std::vector<Bullet*> bullets;
+
+	//GUI
+	sf::Font font;
+	sf::Text pointText;
+
+	sf::Text GameOver;
+
+	//system
+	unsigned point;
+
+	//player gui
+	sf::RectangleShape playHPBar;
+	sf::RectangleShape playHPBarBack;
+
+
+	//World
+	sf::Texture wordBackgound_t;
+	sf::Sprite wordBackgound_s;
+
+	void iniWorld();
+	void iniWindow();
+	void iniTexture();
+
+	void iniGui();
+
+	void inisystem();
+
+	void iniPlayer();
+	void iniEnemies();
+
+	void iniItem();
+
+public:
+	Game();
+	virtual ~Game();
+
+	//Function
+	void run();
+
+	void updatePollEvent();
+	void updateInput();
+
+	void updateGUI();
+	void updateWorld();
+	void updateCollision();
+
+	void updateBullet();
+	void updateEnemy();
+	void updateitem();
+	//void updateCombat();
+	//void updateCombatitem();
+
+	void update();
+
+	void renderGUI();
+	void render();
+	void renderWorld();
 };

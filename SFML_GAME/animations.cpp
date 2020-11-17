@@ -12,8 +12,8 @@ animations::animations(sf::Texture* texture, sf::Vector2u imageCount, float swit
 
 
 	//กำหนดกรอบให้กับ sprite ความกว้าง,ความสูง
-	uvrect.width = texture->getSize().x / float(imageCount.x);  // ขนาดรูป หารด้วย จำนวนภาพในรูปแกน x
-	uvrect.height = texture->getSize().y / float(imageCount.y);  // ขนาดรูป หารด้วย จำนวนภาพในรูปแกน y
+	uvrect.width = texture->getSize().x / 3;  // ขนาดรูป หารด้วย จำนวนภาพในรูปแกน x
+	uvrect.height = texture->getSize().y / 4;  // ขนาดรูป หารด้วย จำนวนภาพในรูปแกน y
 }
 
 
@@ -63,3 +63,7 @@ void animations::Update(int row, float deltaTime)
 	else
 		uvrect.left = (currentImage.x + 1) * uvrect.width;
 	uvrect.width = -abs(uvrect.width); */
+
+
+
+

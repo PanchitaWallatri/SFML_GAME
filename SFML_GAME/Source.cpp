@@ -1,24 +1,28 @@
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include <SFML/Audio.hpp>
-#include "animations.h"
-#include "Player.h"
-#include "Game.h"
+//#include <SFML/Graphics.hpp>
+//#include <iostream>
+//#include <SFML/Audio.hpp>
+//#include "animations.h"
+//#include "player.h"
+#include "game.h"
 //#include "object.h"
+#include<time.h>
 
 using namespace sf;
 
+
+
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(840, 650), "HOME;RUN", sf::Style::Close | sf::Style::Titlebar);
+    sf::RenderWindow window(sf::VideoMode(840, 650), "Car Car Car", sf::Style::Close | sf::Style::Default);
     //sf::Event ev;
+    //srand(time(NULL));
     std::srand(static_cast<unsigned>(time(NULL)));
 
-    game Game;
+    Game game;
 
     /*sf::CircleShape collision(100.f);
     collision.setPosition({ 200.f, 200.f });
-    collision.setFillColor(sf::Color::Magenta);*/
+    collision.setFillColor(sf::Color::Magenta);
 
     sf::Music music;
     if (!music.openFromFile("C:/Users/User/Downloads/The-Pink-Panther-Soundtrack.ogg"))
@@ -28,7 +32,7 @@ int main()
     music.play();
 
 
-    /*sf::Texture playerTexture;
+    sf::Texture playerTexture;
     sf::Texture backgroundTexture;
     if (!playerTexture.loadFromFile("D:/gamess/dog1.png"))
     {
@@ -69,7 +73,11 @@ int main()
                     window.close();
                 break;
             }
+            //std::cout << "Score: " << Text.getPosition();
         }
+        
+
+        
         window.draw(bgSprite);
         window.draw(shapeSprite);
         window.draw(collision);
@@ -113,7 +121,8 @@ int main()
         window.clear();
     }
 
-
+    
     return 0;*/
-    Game.run();
+game.run();
+   
 }
