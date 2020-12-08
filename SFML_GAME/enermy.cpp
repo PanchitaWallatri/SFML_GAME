@@ -52,7 +52,7 @@ void Enermy::Drawenermy(sf::RenderTarget& target)
 
 void Enemy::iniVariation()
 {
-	this->pointConut = rand() % 5 + 3; //min = 3 max = 7
+	this->pointConut = rand() % 5 +3; //min = 3 max = 7
 	this->type = 0;
 	this->speed = static_cast<float>(this->pointConut);
 	this->hp = this->hpmax;
@@ -60,6 +60,7 @@ void Enemy::iniVariation()
 	this->damage = this->pointConut;
 	this->recover = this->pointConut;
 	this->point = this->pointConut;
+	this->addpoint = this->pointConut;
 }
 
 void Enemy::iniTexture(sf::Sprite enemies)
@@ -72,40 +73,46 @@ void Enemy::iniTexture(sf::Sprite enemies)
 
 	if (!this->texture1.loadFromFile("D:/gamess/car001.png"))
 	{
-		printf("NOT ENEMY 1-5");
+		printf("NOT ENEMY 1");
 	}
-	if (!this->texture2.loadFromFile("D:/gamess/car001.png"))
+	if (!this->texture2.loadFromFile("D:/gamess/car002.png"))
 	{
-		printf("NOT ENEMY 1-5");
+		printf("NOT ENEMY 2");
 
 	}
-	if (!this->texture3.loadFromFile("D:/gamess/car001.png"))
+	if (!this->texture3.loadFromFile("D:/gamess/car003.png"))
 	{
-		printf("NOT ENEMY 1-5");
+		printf("NOT ENEMY 3");
 	}
-	if (!this->texture4.loadFromFile("D:/gamess/car001.png"))
+	if (!this->texture4.loadFromFile("D:/gamess/bone.png"))
 	{
-		printf("NOT ENEMY 1-5");
+		printf("NOT ENEMY 4");
 	}
+	if (!this->texture5.loadFromFile("D:/gamess/coin.png"))
+	{
+		printf("NOT ENEMY 5");
+	}
+	
 
-	this->typeEnemy = rand() % 4;
+	this->typeEnemy = rand() % 3;
 	//Green
-	if (this->typeEnemy == 3)
-	{
-		this->enemy[3].setTexture(this->texture4);
-		//this->enemy[4].setTextureRect(sf::IntRect(0, 0, 115, 100));
-		
-		this->enemies = this->enemy[3];
-		this->speed = static_cast<float>(this->pointConut / 2);
-		this->enemies.setScale(1.f, 1.f);
-	}
-	//Red
 	if (this->typeEnemy == 2)
 	{
 		this->enemy[2].setTexture(this->texture3);
-		//this->enemy[3].setTextureRect(sf::IntRect(0, 110, 115, 130));
+		//this->enemy[4].setTextureRect(sf::IntRect(0, 0, 115, 100));
 		
 		this->enemies = this->enemy[2];
+		this->speed = static_cast<float>(this->pointConut / 2);
+		this->enemies.setScale(1.f, 1.f);
+		//this->enemies.setPosition();
+	}
+	//Red
+	if (this->typeEnemy == 1)
+	{
+		this->enemy[1].setTexture(this->texture2);
+		//this->enemy[3].setTextureRect(sf::IntRect(0, 110, 115, 130));
+		
+		this->enemies = this->enemy[1];
 		this->speed = static_cast<float>(this->pointConut / 2);
 		this->enemies.setScale(1.f, 1.f);
 	}
@@ -119,20 +126,17 @@ void Enemy::iniTexture(sf::Sprite enemies)
 	//	this->speed = static_cast<float>(this->pointConut / 2+2 );
 	//}
 	//small stone
-	if (this->typeEnemy == 1)
+	if (this->typeEnemy == 0)
 	{
-		this->enemy[1].setTexture(this->texture1);
+		this->enemy[0].setTexture(this->texture1);
 		//this->enemy[1].setTextureRect(sf::IntRect(120, 110, 110, 100));
 
-		this->enemies = this->enemy[1];
-		this->speed = static_cast<float>(this->pointConut / 2 + 3);
+		this->enemies = this->enemy[0];
+		this->speed = static_cast<float>(this->pointConut / 2);
 		this->enemies.setScale(1.f, 1.f);
 	}
 	//
-	if (this->typeEnemy == 0)
-	{
-
-	}
+	
 }
 
 //void Enemy::iniTexture()
@@ -143,29 +147,43 @@ void Enemy::iniTexture(sf::Sprite enemies)
 //
 //}
 
-Enemy::Enemy(float pos_x, float pos_y)
+Enemy::Enemy(float pos_x, float pos_y, int i)
 {
 	this->iniVariation();
 	this->iniTexture(enemies);
-	this->Item();
+	this->Item(i);
+	this->Item2(i);
 	//this->iniTexture();
 	//this->shape.setPosition(pos_x, pos_y);
 	this->enemies.setPosition(pos_x, pos_y);
 	this->item.setPosition(pos_x, pos_y);
+	this->item2.setPosition(pos_x, pos_y);
 }
 
-void Enemy::Item()
+void Enemy::Item(int i)
 {
-	this->typeItem = rand() % 100;
+	this->typeItem = rand() % i;
 
-	if (this->typeItem == 99)
+	if (this->typeItem == 0)
 	{
-		this->item.setTexture(this->texture1);
+		this->item.setTexture(this->texture4);
 		//this->item.setTextureRect(sf::IntRect(230, 0, 100, 70));
 		this->speed = static_cast<float>(this->pointConut / 2 + 1);
+		this->item.setScale(.7f, .7f);
 	}
 }
+void Enemy::Item2(int i)
+{
+	this->typeItem2 = rand() % i;
 
+	if (this->typeItem2 == 0)
+	{
+		this->item2.setTexture(this->texture5);
+		//this->item.setTextureRect(sf::IntRect(230, 0, 100, 70));
+		this->speed = static_cast<float>(this->pointConut / 2 + 1);
+		this->item2.setScale(.7f, .7f);
+	}
+}
 Enemy::~Enemy()
 {
 }
@@ -181,6 +199,11 @@ const sf::FloatRect Enemy::getBoundItem() const
 	return this->item.getGlobalBounds();
 }
 
+const sf::FloatRect Enemy::getBoundItem2() const
+{
+	return this->item2.getGlobalBounds();
+}
+
 const sf::Vector2f& Enemy::getpos() const
 {
 	return this->enemies.getPosition();
@@ -189,6 +212,11 @@ const sf::Vector2f& Enemy::getpos() const
 const sf::Vector2f& Enemy::getposItem() const
 {
 	return this->item.getPosition();
+}
+
+const sf::Vector2f& Enemy::getposItem2() const
+{
+	return this->item2.getPosition();
 }
 
 const int& Enemy::getPoint() const
@@ -205,6 +233,10 @@ const int& Enemy::getRecover() const
 {
 	return this->recover;
 }
+const int& Enemy::Addpoint() const
+{
+	return this->addpoint;
+}
 
 void Enemy::update()
 {
@@ -216,6 +248,11 @@ void Enemy::updateItem()
 	this->item.move(0.f, this->speed);
 }
 
+void Enemy::updateItem2()
+{
+	this->item2.move(0.f, this->speed);
+}
+
 void Enemy::render(sf::RenderTarget* target)
 {
 	//target->draw(this->shape);
@@ -225,4 +262,9 @@ void Enemy::render(sf::RenderTarget* target)
 void Enemy::renderitem(sf::RenderTarget* target)
 {
 	target->draw(this->item);
+}
+
+void Enemy::renderitem2(sf::RenderTarget* target)
+{
+	target->draw(this->item2);
 }

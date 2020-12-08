@@ -210,6 +210,7 @@ void Game::iniWorld()
 	}
 	this->wordBackgound_s.setTexture(this->wordBackgound_t);
 	this->wordBackgound_s.setTextureRect(sf::IntRect(0, 0, 840, 650));
+	
 }
 
 void Game::iniGui()
@@ -220,12 +221,16 @@ void Game::iniGui()
 
 	//inipoint
 	this->pointText.setFont(font);
-	this->pointText.setCharacterSize(50);
+	this->pointText.setCharacterSize(60);
 	this->pointText.setPosition(this->window->getSize().x - 200, 0);
 	this->pointText.setString("POINT");
 
 
 	//update player
+	//this->playHP.setFont(font);
+	//this->playHP.setCharacterSize(50);
+	//this->playHP.setPosition(this->window->getSize().x -0, 0);
+	//this->playHP.setString("HP");
 	this->playHPBar.setSize(sf::Vector2f(300.f, 25.f));
 	this->playHPBar.setFillColor(sf::Color::Red);
 	this->playHPBar.setPosition(sf::Vector2f(0, 50));
@@ -247,6 +252,11 @@ void Game::inisystem()
 	this->point = 0;
 }
 
+void Game::inisystemHightscore()
+{
+	this->highscore = new EndGame(this->point, this->Hightscore, this->window, this->pointText);
+}
+
 void Game::iniPlayer()
 {
 	this->player = new Player();
@@ -261,8 +271,14 @@ void Game::iniEnemies()
 
 void Game::iniItem()
 {
-	this->spawnTimerItemMax = 500.f;
+	this->spawnTimerItemMax = 5.f;
 	this->spawnTimerItem = this->spawnTimerItemMax;
+}
+
+void Game::iniItem2()
+{
+	this->spawnTimerItemMax2 = 5.f;
+	this->spawnTimerItem2 = this->spawnTimerItemMax2;
 }
 
 Game::Game()
@@ -278,6 +294,10 @@ Game::Game()
 
 	this->iniPlayer();
 	this->iniEnemies();
+	this->inisystemHightscore();
+
+	this->iniItem();
+	this->iniItem2();
 }
 
 Game::~Game()
@@ -302,6 +322,10 @@ Game::~Game()
 	}
 
 	for (auto* i : this->items)
+	{
+		delete i;
+	}
+	for (auto* i : this->items2)
 	{
 		delete i;
 	}
@@ -372,26 +396,37 @@ void Game::updateInput()
 void Game::updateGUI()
 {
 	std::stringstream ss;
-	ss << "Point : " << this->point;
+	ss << "Point   " << this->point;
 	this->pointText.setString(ss.str());
+	//ss << "HP   ";
+	//this->playHP.setString(ss.str());
 
 	//update player
 	float hpPercent = static_cast<float>(this->player->getHP()) / this->player->getHPMax() * 100;
 	this->playHPBar.setSize(sf::Vector2f(4.f * hpPercent, this->playHPBar.getSize().y));
 }
 
+void Game::updateHightscore()
+{
+	this->highscore->update(this->Hightscore, this->point, this->count);
+}
+
 void Game::updateWorld()
 {
+	//sf::Sprite wordBackgound_s;
+	/*while (this->window->isOpen())
+	{
 
+	}*/
 }
 
 void Game::updateCollision()
 {
 	//set not move over sceen
 	//left
-	if (this->player->getBound().left < 115.f)
+	if (this->player->getBound().left < 150.f)
 	{
-		this->player->setPosition(115.f, this->player->getBound().top);
+		this->player->setPosition(150.f, this->player->getBound().top);
 	}
 	//top
 	if (this->player->getBound().top < 0.f)
@@ -399,9 +434,9 @@ void Game::updateCollision()
 		this->player->setPosition(this->player->getBound().left, 0.f);
 	}
 	//right
-	if (this->player->getBound().left + this->player->getBound().width >= this->window->getSize().x-115.f)
+	if (this->player->getBound().left + this->player->getBound().width >= this->window->getSize().x-150.f)
 	{
-		this->player->setPosition(this->window->getSize().x-115.f - this->player->getBound().width, this->player->getBound().top);
+		this->player->setPosition(this->window->getSize().x-150.f - this->player->getBound().width, this->player->getBound().top);
 	}
 	//down
 	if (this->player->getBound().top + this->player->getBound().height >= this->window->getSize().y)
@@ -426,16 +461,16 @@ void Game::updateCollision()
 		}
 		counter++;
 	}
-}
+}*/
 
 void Game::updateCombat()
 {
 	for (size_t i = 0; i < this->enemies.size(); i++)
 	{
 		bool enemy_delet = false;
-		for (size_t k = 0; k < this->bullets.size() && enemy_delet == false; k++)
-		{
-			if (this->enemies[i]->getBound().intersects(this->bullets[k]->getBound()))
+		/*for (size_t k = 0; k < this->enemies.size() && enemy_delet == false; k++)
+		{*/
+			if (this->enemies[i]->getBound().intersects(this->enemies[i]->getBound()))
 			{
 				this->point += this->enemies[i]->getPoint();
 
@@ -443,15 +478,15 @@ void Game::updateCombat()
 				delete this->enemies[i];
 				this->enemies.erase(this->enemies.begin() + i);
 
-				delete this->bullets[k];
-				this->bullets.erase(this->bullets.begin() + k);
+				/*delete this->enemies[i];
+				this->enemies.erase(this->enemies.begin() + i);*/
 
 			}
-		}
+	//	}
 	}
 }
 
-void Game::updateCombatitem()
+/*void Game::updateCombatitem()
 {
 	for (size_t i = 0; i < this->items.size(); i++)
 	{
@@ -479,9 +514,12 @@ void Game::updateEnemy()
 	if (this->spawnTimer >= this->spawnTimerMax)
 	{
 		float randomX = rand() % this->window->getSize().x;
-		if(randomX>=150 && randomX<= 600){
-			this->enemies.push_back(new Enemy(randomX, -100.f));
+		if(randomX>=150 && randomX<= 600)
+		{
+
+			this->enemies.push_back(new Enemy(randomX, -100.f ,4));
 			this->spawnTimer = 0.f;
+
 		}
 		//this->enemies.push_back(new Enemy(rand() % this->window->getSize().x - 100, -100.f));
 		//this->spawnTimer = 0.f;
@@ -521,11 +559,16 @@ void Game::updateEnemy()
 void Game::updateitem()
 {
 	//spawn
-	this->spawnTimerItem += .25f;
+	this->spawnTimerItem += 0.01f;
 	if (this->spawnTimerItem >= this->spawnTimerItemMax)
 	{
-		this->items.push_back(new Enemy(rand() % this->window->getSize().x - 100, -100.f));
-		this->spawnTimerItem = 0.f;
+		float randomX = rand() % this->window->getSize().x;
+		if (randomX >= 150 && randomX <= 600) 
+		{
+			this->items.push_back(new Enemy(randomX, -100.f, 1));
+			this->spawnTimerItem = 0.f;
+		}
+		
 	}
 
 	//update
@@ -547,6 +590,46 @@ void Game::updateitem()
 			this->player->FillHP(this->items.at(counter)->getRecover());
 			delete this->items.at(counter);
 			this->items.erase(this->items.begin() + counter);
+		}
+		counter++;
+	}
+}
+
+void Game::updateitem2()
+{
+	//spawn
+	this->spawnTimerItem2 += 0.01f;
+	if (this->spawnTimerItem2 >= this->spawnTimerItemMax2)
+	{
+		float randomX = rand() % this->window->getSize().x;
+		if (randomX >= 150 && randomX <= 600)
+		{
+			this->items2.push_back(new Enemy(randomX, -100.f, 1));
+			this->spawnTimerItem2 = 0.f;
+		}
+		
+	}
+
+	//update
+	unsigned counter = 0;
+	for (auto* enemy2 : this->items2)
+	{
+		enemy2->updateItem2();
+
+		//เลย screen
+		if (enemy2->getBoundItem().top > this->window->getSize().y)
+		{
+			//delete enemy
+			delete this->items2.at(counter);
+			this->items2.erase(this->items2.begin() + counter);
+		}
+		//player collision
+		else if (enemy2->getBoundItem2().intersects(this->player->getBound()))
+		{
+			//this->player->FillHP(this->items2.at(counter)->getRecover());
+			this->point += 5;
+			delete this->items2.at(counter);
+			this->items2.erase(this->items2.begin() + counter);
 			//hp
 		}
 		counter++;
@@ -561,19 +644,23 @@ void Game::update()
 
 	//this->updateBullet();
 	this->updateEnemy();
-	//this->updateitem();
+	this->updateitem();
+	this->updateitem2();
 	//this->updateCombatitem();
 	//this->updateCombat();
 
 	this->updateGUI();
 	this->updateWorld();
+	this->updateHightscore();
 }
 
 void Game::renderGUI()
 {
 	this->window->draw(this->pointText);
+	//this->window->draw(this->playHP);
 	this->window->draw(this->playHPBarBack);
 	this->window->draw(this->playHPBar);
+	
 
 }
 
@@ -601,6 +688,10 @@ void Game::render()
 	{
 		enemy1->renderitem(this->window);
 	}
+	for (auto* enemy2 : this->items2)
+	{
+		enemy2->renderitem2(this->window);
+	}
 	this->renderGUI();
 
 	//Game over
@@ -614,4 +705,9 @@ void Game::render()
 void Game::renderWorld()
 {
 	this->window->draw(this->wordBackgound_s);
+}
+
+void Game::renderHightscore()
+{
+	this->highscore->render(this->window);
 }

@@ -13,6 +13,7 @@
 //#include "object.h"
 #include<map>
 #include<sstream>
+#include"EndGame.h"
 
 /*class game
 {
@@ -87,6 +88,7 @@ private:
 	sf::RenderWindow* window;
 	//player
 	Player* player;
+	EndGame* highscore;
 
 	//Enemy
 	float spawnTimer;
@@ -95,6 +97,8 @@ private:
 
 	std::vector<Enemy*> enemies;
 	std::vector<Enemy*> items;
+	std::vector<Enemy*> items2;
+
 
 	
 
@@ -102,17 +106,24 @@ private:
 	float spawnTimerItem;
 	float spawnTimerItemMax;
 
+	float spawnTimerItem2;
+	float spawnTimerItemMax2;
+
 	std::map<std::string, sf::Texture*> texture;
 	//std::vector<Bullet*> bullets;
 
 	//GUI
 	sf::Font font;
 	sf::Text pointText;
+	//sf::Text playHP;
 
 	sf::Text GameOver;
 
 	//system
+	unsigned Hightscore;
 	unsigned point;
+	unsigned count = 0;
+
 
 	//player gui
 	sf::RectangleShape playHPBar;
@@ -130,11 +141,13 @@ private:
 	void iniGui();
 
 	void inisystem();
+	void inisystemHightscore();
 
 	void iniPlayer();
 	void iniEnemies();
 
 	void iniItem();
+	void iniItem2();
 
 public:
 	Game();
@@ -149,11 +162,13 @@ public:
 	void updateGUI();
 	void updateWorld();
 	void updateCollision();
+	void updateHightscore();
 
-	void updateBullet();
+	//void updateBullet();
 	void updateEnemy();
 	void updateitem();
-	//void updateCombat();
+	void updateitem2();
+	void updateCombat();
 	//void updateCombatitem();
 
 	void update();
@@ -161,4 +176,5 @@ public:
 	void renderGUI();
 	void render();
 	void renderWorld();
+	void renderHightscore();
 };
