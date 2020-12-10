@@ -54,7 +54,7 @@ void EndGame::update(unsigned Hightscore, unsigned point, unsigned c)
 
 	//Hight score
 	std::ifstream readHightscore;
-	readHightscore.open("score/HightScore.text");
+	readHightscore.open("score/hightScore.text");
 	if (readHightscore.is_open())
 	{
 		while (!readHightscore.eof())
@@ -64,7 +64,7 @@ void EndGame::update(unsigned Hightscore, unsigned point, unsigned c)
 	}
 	readHightscore.close();
 
-	std::ofstream writeHightscore("score/HightScore.text");
+	std::ofstream writeHightscore("score/hightScore.text");
 	if (writeHightscore.is_open())
 	{
 		if (point > Hightscore)
@@ -78,7 +78,7 @@ void EndGame::update(unsigned Hightscore, unsigned point, unsigned c)
 	//score
 
 	std::ifstream readscore;
-	readscore.open("score/score_0.text");
+	readscore.open("score/score.text");
 	if (readscore.is_open())
 	{
 		while (!readHightscore.eof())
@@ -88,7 +88,7 @@ void EndGame::update(unsigned Hightscore, unsigned point, unsigned c)
 	}
 	readHightscore.close();
 
-	std::ofstream writescore("score/score_0.text");
+	std::ofstream writescore("score/score.text");
 	if (writescore.is_open())
 	{
 		if (c == 1)

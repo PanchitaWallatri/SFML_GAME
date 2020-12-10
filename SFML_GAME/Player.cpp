@@ -98,7 +98,7 @@ void Player::Drawplayer(sf::RenderTarget& target)
 
 void Player::iniVariable()
 {
-	this->MoveSpeed = 100.f;
+	this->MoveSpeed = 80.f;
 	this->attackCooldownMax = 8.f;
 	this->attackCooldown = this->attackCooldownMax;
 
@@ -279,7 +279,7 @@ void Player::move(sf::RenderWindow* window)
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		//left RIGHT
-		this->sprite.move(0.f, 2.f);
+		this->sprite.move(0.f, 5.f);
 		window->setFramerateLimit(this->speedMove);
 
 		this->sprite.setTextureRect(sf::IntRect(this->P_x * this->A_x, this->A_y * 0, this->A_x, this->A_y));

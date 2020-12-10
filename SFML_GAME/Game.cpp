@@ -468,21 +468,19 @@ void Game::updateCombat()
 	for (size_t i = 0; i < this->enemies.size(); i++)
 	{
 		bool enemy_delet = false;
-		/*for (size_t k = 0; k < this->enemies.size() && enemy_delet == false; k++)
-		{*/
-			if (this->enemies[i]->getBound().intersects(this->enemies[i]->getBound()))
+		for (size_t k = 0; k < this->enemies.size() && enemy_delet == false; k++)
+		{
+			if (this->enemies[i]->getBound().intersects(this->enemies[k]->getBound()))
 			{
-				this->point += this->enemies[i]->getPoint();
-
 				enemy_delet = true;
 				delete this->enemies[i];
+				delete this->enemies[k];
 				this->enemies.erase(this->enemies.begin() + i);
-
+				this->enemies.erase(this->enemies.begin() + k);
 				/*delete this->enemies[i];
 				this->enemies.erase(this->enemies.begin() + i);*/
-
 			}
-	//	}
+		}
 	}
 }
 
@@ -513,14 +511,28 @@ void Game::updateEnemy()
 	this->spawnTimer += 0.1f;
 	if (this->spawnTimer >= this->spawnTimerMax)
 	{
-		float randomX = rand() % this->window->getSize().x;
-		if(randomX>=150 && randomX<= 600)
-		{
-
-			this->enemies.push_back(new Enemy(randomX, -100.f ,4));
-			this->spawnTimer = 0.f;
-
-		}
+		//float randomX = rand() % this->window->getSize().x;
+		float randomLane = rand() % 4;
+			if(randomLane == 0)
+			{
+				this->enemies.push_back(new Enemy(175, -100.f, 4));
+				this->spawnTimer = 0.f;
+			}
+			if (randomLane == 1)
+			{
+				this->enemies.push_back(new Enemy(310, -100.f, 4));
+				this->spawnTimer = 0.f;
+			}
+			if (randomLane == 2)
+			{
+				this->enemies.push_back(new Enemy(440, -100.f, 4));
+				this->spawnTimer = 0.f;
+			}
+			if (randomLane == 3)
+			{
+				this->enemies.push_back(new Enemy(570, -100.f, 4));
+				this->spawnTimer = 0.f;
+			}
 		//this->enemies.push_back(new Enemy(rand() % this->window->getSize().x - 100, -100.f));
 		//this->spawnTimer = 0.f;
 	}
@@ -532,13 +544,13 @@ void Game::updateEnemy()
 		enemy->update();
 
 		//เลย screen
-		if (enemy->getBound().top > this->window->getSize().y)
-		{
-			//delete enemy
-			delete this->enemies.at(counter);
-			this->enemies.erase(this->enemies.begin() + counter);
-			this->point += 10;
-		}
+			if (enemy->getBound().top > this->window->getSize().y)
+			{
+				//delete enemy
+				delete this->enemies.at(counter);
+				this->enemies.erase(this->enemies.begin() + counter);
+				this->point += 10;
+			}
 		//player collision
 		else if (enemy->getBound().intersects(this->player->getBound()))
 		{
@@ -696,7 +708,10 @@ void Game::render()
 
 	//Game over
 	if (this->player->getHP() <= 0)
+	{
 		this->window->draw(this->GameOver);
+		this->renderHightscore();
+	}
 
 	this->window->display();
 
