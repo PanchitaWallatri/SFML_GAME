@@ -1,6 +1,6 @@
 //#include <SFML/Graphics.hpp>
 //#include <iostream>
-//#include <SFML/Audio.hpp>
+#include <SFML/Audio.hpp>
 //#include "animations.h"
 //#include "player.h"
 #include "game.h"
@@ -17,8 +17,17 @@ int main()
     //srand(time(NULL));
     std::srand(static_cast<unsigned>(time(NULL)));
 
+
+    sf::Music music;
+    if (!music.openFromFile("C:/Users/User/Downloads/The-Pink-Panther-Soundtrack.ogg"))
+    {
+        std::cout << "ERROR" << std::endl;
+    }
+    music.play();
+
     WinDow game;
-    game.run(); /*sf::CircleShape collision(100.f);
+    game.run();
+    /*sf::CircleShape collision(100.f);
     collision.setPosition({ 200.f, 200.f });
     collision.setFillColor(sf::Color::Magenta);
 

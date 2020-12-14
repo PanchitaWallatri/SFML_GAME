@@ -9,20 +9,22 @@ void EndGame::iniText(sf::RenderWindow* window, sf::Text pointt)
 
 	//ini hightscoreText
 	this->hightscoreText.setFont(this->font);
-	this->hightscoreText.setCharacterSize(40);
-	this->hightscoreText.setPosition(window->getSize().x / 2.5f - this->hightscoreText.getGlobalBounds().width / 2.f, window->getSize().y / 2.f - this->hightscoreText.getGlobalBounds().height / 2.f - 40);
+	this->hightscoreText.setCharacterSize(70);
+	this->hightscoreText.setPosition(window->getSize().x / 2.5f - this->hightscoreText.getGlobalBounds().width / 2.f-50, window->getSize().y / 2.f - this->hightscoreText.getGlobalBounds().height / 2.f - 40);
 	this->hightscoreText.setString("HightScore");
+	this->hightscoreText.setFillColor(sf::Color::Black);
 
 	//score
-	pointt.setCharacterSize(40);
+	pointt.setCharacterSize(70);
 	pointt.setPosition(window->getSize().x / 2.5f - this->hightscoreText.getGlobalBounds().width / 2.f + 80, window->getSize().y / 2.f - this->hightscoreText.getGlobalBounds().height / 2.f - 80);
 	this->pointtText = pointt;
 
 	//score1
 	this->pointtText1.setFont(this->font);
-	this->pointtText1.setCharacterSize(40);
+	this->pointtText1.setCharacterSize(70);
 	this->pointtText1.setPosition(window->getSize().x / 2.5f - this->hightscoreText.getGlobalBounds().width / 2.f, window->getSize().y / 2.f - this->hightscoreText.getGlobalBounds().height / 2.f - 120);
 	this->pointtText1.setString("pointtText1");
+	this->pointtText1.setFillColor(sf::Color::Black);
 
 
 }
@@ -99,13 +101,14 @@ void EndGame::update(unsigned Hightscore, unsigned point, unsigned c)
 	}
 	writeHightscore.close();
 	std::stringstream dd;
-	dd << "Hight score : " << Hightscore;
+	dd << "Hight score  " << Hightscore;
 	this->hightscoreText.setString(dd.str());
+	this->hightscoreText.setFillColor(sf::Color::Black);
 
 	std::stringstream ss;
-	ss << "score : " << point;
+	ss << "score  " << point;
 	this->pointtText.setString(ss.str());
-
+	this->pointtText.setFillColor(sf::Color::Black);
 }
 
 void EndGame::render(sf::RenderTarget* target)
