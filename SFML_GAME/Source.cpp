@@ -17,13 +17,16 @@ int main()
     //srand(time(NULL));
     std::srand(static_cast<unsigned>(time(NULL)));
 
-
-    sf::Music music;
-    if (!music.openFromFile("C:/Users/User/Downloads/The-Pink-Panther-Soundtrack.ogg"))
+    sf::SoundBuffer Sound1;
+    if(!Sound1.loadFromFile("D:/gamess/SEVENTEEN.wav"))
     {
         std::cout << "ERROR" << std::endl;
     }
-    music.play();
+    sf::Sound Sound;
+    Sound.setBuffer(Sound1);
+    Sound.setLoop(true);
+    Sound.play();
+    
 
     WinDow game;
     game.run();

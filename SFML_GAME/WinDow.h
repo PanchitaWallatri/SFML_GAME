@@ -2,6 +2,7 @@
 #include"game.h"
 #include"State.h"
 #include"MainMenuState.h"
+#include <SFML/Audio.hpp>
 
 
 class WinDow
@@ -13,6 +14,7 @@ private:
 	std::map<std::string, int> supportedKey;
 	float dt;
 	sf::Clock dtClock;
+	sf::Music music;
 
 	void iniWindow();
 	void iniState();

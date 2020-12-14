@@ -97,6 +97,7 @@ void WinDow::run()
 	while (this->window->isOpen())
 	{
 		//this->updateDT();
+
 		this->update();
 		this->render();
 	}

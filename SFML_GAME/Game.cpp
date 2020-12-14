@@ -523,12 +523,15 @@ void Game::updateCombat()
 void Game::updateEnemy()
 {
 	//spawn
-	this->spawnTimer += 0.1f;
-	if (this->spawnTimer >= this->spawnTimerMax)
+	int c = 0;
+	if (this->point >= 300)
 	{
-		//float randomX = rand() % this->window->getSize().x;
-		float randomLane = rand() % 4;
-			if(randomLane == 0)
+		c += 0.05;
+		this->spawnTimer += 0.2f;
+		if (this->spawnTimer >= this->spawnTimerMax)
+		{
+			float randomLane = rand() % 4;
+			if (randomLane == 0)
 			{
 				this->enemies.push_back(new Enemy(175, -100.f, 4));
 				this->spawnTimer = 0.f;
@@ -548,8 +551,37 @@ void Game::updateEnemy()
 				this->enemies.push_back(new Enemy(570, -100.f, 4));
 				this->spawnTimer = 0.f;
 			}
+		}
 		//this->enemies.push_back(new Enemy(rand() % this->window->getSize().x - 100, -100.f));
 		//this->spawnTimer = 0.f;
+	}
+	if(this->point < 300)
+	{
+		this->spawnTimer += 0.1f;
+		if (this->spawnTimer >= this->spawnTimerMax)
+		{
+			float randomLane = rand() % 4;
+			if (randomLane == 0)
+			{
+				this->enemies.push_back(new Enemy(175, -100.f, 4));
+				this->spawnTimer = 0.f;
+			}
+			if (randomLane == 1)
+			{
+				this->enemies.push_back(new Enemy(310, -100.f, 4));
+				this->spawnTimer = 0.f;
+			}
+			if (randomLane == 2)
+			{
+				this->enemies.push_back(new Enemy(440, -100.f, 4));
+				this->spawnTimer = 0.f;
+			}
+			if (randomLane == 3)
+			{
+				this->enemies.push_back(new Enemy(570, -100.f, 4));
+				this->spawnTimer = 0.f;
+			}
+		}
 	}
 
 	//update
