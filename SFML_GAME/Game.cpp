@@ -186,7 +186,7 @@ void game::render()
 }*/
 void Game::iniWindow()
 {
-	this->window = new sf::RenderWindow(sf::VideoMode(840, 650), "Car Car Car", sf::Style::Close | sf::Style::Titlebar);
+	this->window = new sf::RenderWindow(sf::VideoMode(840, 650), "Escape Car", sf::Style::Close | sf::Style::Titlebar);
 	this->window->setFramerateLimit(60);
 	this->window->setVerticalSyncEnabled(false);
 }
@@ -210,6 +210,9 @@ void Game::iniWorld()
 	}
 	this->wordBackgound_s.setTexture(this->wordBackgound_t);
 	this->wordBackgound_s.setTextureRect(sf::IntRect(0, 0, 840, 650));
+	this->wordBackgound_a.setTexture(this->wordBackgound_t);
+	this->wordBackgound_a.setTextureRect(sf::IntRect(0, 0, 840, 650));
+	this->wordBackgound_a.setPosition(0, wordBackgound_s.getPosition().y - 650);
 	
 }
 
@@ -352,8 +355,13 @@ void Game::updatePollEvent()
 {
 	//ใช้ปุ่มปิด หน้าต่าง window 
 	sf::Event e;
+	float speed = 3000.0f;  // ความเร็วของการเลื่อน 100
+	float deltaTime = 0.0f;
+	sf::Clock clock;  //ใช้ Clock นับเวลาที่เปลี่ยนไป deltaTime
+	
 	while (this->window->pollEvent(e))
 	{
+		deltaTime = clock.restart().asSeconds();
 		if (e.Event::type == sf::Event::Closed)
 		{
 			this->window->close();
@@ -363,6 +371,19 @@ void Game::updatePollEvent()
 		{
 			this->window->close();
 		}
+		if (wordBackgound_s.getPosition().y > 650)
+		{
+			this->wordBackgound_s.setPosition(0, wordBackgound_a.getPosition().y - 650);
+		}
+		if (wordBackgound_a.getPosition().y > 650)
+		{
+			this->wordBackgound_a.setPosition(0, wordBackgound_s.getPosition().y - 650);
+		}
+
+		//ขยับไปโดย ระยะทาง = ความเร็ว * เวลาที่เปลี่ยนไป
+
+		this->wordBackgound_s.move(0, speed * deltaTime);
+		this->wordBackgound_a.move(0, speed * deltaTime);
 
 	}
 }
@@ -413,11 +434,7 @@ void Game::updateHightscore()
 
 void Game::updateWorld()
 {
-	//sf::Sprite wordBackgound_s;
-	/*while (this->window->isOpen())
-	{
-
-	}*/
+	
 }
 
 void Game::updateCollision()
@@ -720,6 +737,8 @@ void Game::render()
 void Game::renderWorld()
 {
 	this->window->draw(this->wordBackgound_s);
+	this->window->draw(this->wordBackgound_a);
+
 }
 
 void Game::renderHightscore()

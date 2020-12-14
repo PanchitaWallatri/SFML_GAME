@@ -4,6 +4,7 @@
 //#include "animations.h"
 //#include "player.h"
 #include "game.h"
+#include"Window.h"
 //#include "object.h"
 #include<time.h>
 
@@ -13,13 +14,12 @@ using namespace sf;
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(840, 650), "Car Car Car", sf::Style::Close | sf::Style::Default);
+    //sf::RenderWindow window(sf::VideoMode(840, 650), "Escape Car", sf::Style::Close | sf::Style::Default);
     //sf::Event ev;
     //srand(time(NULL));
     std::srand(static_cast<unsigned>(time(NULL)));
 
-    Game game;
-
+    Window* window;
     /*sf::CircleShape collision(100.f);
     collision.setPosition({ 200.f, 200.f });
     collision.setFillColor(sf::Color::Magenta);
@@ -122,7 +122,5 @@ int main()
     }
 
     
-    return 0;*/
-game.run();
-   
+    return 0;*/   
 }

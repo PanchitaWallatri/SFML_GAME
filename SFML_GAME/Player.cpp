@@ -228,7 +228,7 @@ void Player::move(sf::RenderWindow* window)
 	this->A_x = texture.getSize().x / 3;
 	this->A_y = texture.getSize().y / 4;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		//left RIGHT
 		this->sprite.move(5.f, 0.f);
@@ -244,7 +244,7 @@ void Player::move(sf::RenderWindow* window)
 		}
 	}
 
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		//left RIGHT
 		this->sprite.move(-5.f, 0.f);
@@ -260,7 +260,7 @@ void Player::move(sf::RenderWindow* window)
 		}
 	}
 
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		//left RIGHT
 		this->sprite.move(0.f, -5.f);
@@ -276,7 +276,7 @@ void Player::move(sf::RenderWindow* window)
 		}
 	}
 
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		//left RIGHT
 		this->sprite.move(0.f, 5.f);

@@ -133,6 +133,7 @@ private:
 	//World
 	sf::Texture wordBackgound_t;
 	sf::Sprite wordBackgound_s;
+	sf::Sprite wordBackgound_a;
 
 	void iniWorld();
 	void iniWindow();
