@@ -27,7 +27,7 @@ GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* suppo
 	this->iniTexture();
 	this->iniPlayer();
 	//--------------------------------------
-	this->game = new Game();
+	this->game = new Game(window);
 	this->game->run();
 
 

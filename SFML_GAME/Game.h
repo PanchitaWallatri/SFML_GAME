@@ -136,7 +136,7 @@ private:
 	sf::Sprite wordBackgound_a;
 
 	void iniWorld();
-	void iniWindow();
+	void iniWindow(sf::RenderWindow* window);
 	void iniTexture();
 
 	void iniGui();
@@ -151,7 +151,7 @@ private:
 	void iniItem2();
 
 public:
-	Game();
+	Game(sf::RenderWindow* window);
 	virtual ~Game();
 
 	//Function

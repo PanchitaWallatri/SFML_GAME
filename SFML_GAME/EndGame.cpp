@@ -29,13 +29,13 @@ void EndGame::iniText(sf::RenderWindow* window, sf::Text pointt)
 
 void EndGame::iniTextBackground(sf::RenderWindow* window)
 {
-	if (!this->bg.loadFromFile("D:/gamess/background.png"))
+	if (!this->bg.loadFromFile("D:/gamess/end.png"))
 	{
 		printf("NOT LOAD BG High");
 	}
 
 	this->bgg.setTexture(this->bg);
-	this->bgg.setScale(840, 650);
+	
 }
 
 EndGame::EndGame(unsigned score, unsigned hightscore, sf::RenderWindow* window, sf::Text pointt)

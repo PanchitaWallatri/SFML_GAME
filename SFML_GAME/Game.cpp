@@ -184,11 +184,9 @@ void game::render()
 
 
 }*/
-void Game::iniWindow()
+void Game::iniWindow(sf::RenderWindow* window)
 {
-	this->window = new sf::RenderWindow(sf::VideoMode(840, 650), "Escape Car", sf::Style::Close | sf::Style::Titlebar);
-	this->window->setFramerateLimit(60);
-	this->window->setVerticalSyncEnabled(false);
+	this->window = window; 
 }
 
 void Game::iniTexture()
@@ -284,9 +282,9 @@ void Game::iniItem2()
 	this->spawnTimerItem2 = this->spawnTimerItemMax2;
 }
 
-Game::Game()
+Game::Game(sf::RenderWindow* window)
 {
-	this->iniWindow();
+	this->iniWindow(window);
 
 	//this->iniTexture();
 
