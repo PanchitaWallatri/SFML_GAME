@@ -4,13 +4,11 @@
 //#include "animations.h"
 //#include "player.h"
 #include "game.h"
-#include"Window.h"
 //#include "object.h"
 #include<time.h>
+#include"WinDow.h"
 
 using namespace sf;
-
-
 
 int main()
 {
@@ -19,8 +17,8 @@ int main()
     //srand(time(NULL));
     std::srand(static_cast<unsigned>(time(NULL)));
 
-    Window* window;
-    /*sf::CircleShape collision(100.f);
+    WinDow game;
+    game.run(); /*sf::CircleShape collision(100.f);
     collision.setPosition({ 200.f, 200.f });
     collision.setFillColor(sf::Color::Magenta);
 
