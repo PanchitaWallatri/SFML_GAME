@@ -145,7 +145,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="animations.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="EndGame.cpp" />
     <ClCompile Include="enermy.cpp" />
@@ -158,7 +157,6 @@
     <ClCompile Include="WinDow.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="animations.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="EndGame.h" />
     <ClInclude Include="enermy.h" />

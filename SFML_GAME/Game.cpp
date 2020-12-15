@@ -227,6 +227,7 @@ void Game::iniSound()
 	}
 	
 	this->soundeffect.setBuffer(this->sound1);
+	this->soundeffect.setVolume(120);
 	this->soundeffect2.setBuffer(this->sound2);
 	
 }
