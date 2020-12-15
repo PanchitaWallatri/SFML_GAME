@@ -206,12 +206,12 @@ void Game::iniWorld()
 	{
 		printf("NOT LOAD BACKGROUND");
 	}
-	this->wordBackgound_s.setTexture(this->wordBackgound_t);
-	this->wordBackgound_s.setTextureRect(sf::IntRect(0, 0, 840, 650));
-	this->wordBackgound_a.setTexture(this->wordBackgound_t);
-	this->wordBackgound_a.setTextureRect(sf::IntRect(0, 0, 840, 650));
-	this->wordBackgound_a.setPosition(0, wordBackgound_s.getPosition().y - 650);
-	
+
+	this->wordBackgound_1.setTexture(this->wordBackgound_t);
+	this->wordBackgound_2.setTexture(this->wordBackgound_t);
+
+	this->wordBackgound_1.setScale((float)this->window->getSize().x / this->wordBackgound_t.getSize().x, (float)this->window->getSize().y / this->wordBackgound_t.getSize().y);
+	this->wordBackgound_2.setScale((float)this->window->getSize().x / this->wordBackgound_t.getSize().x, (float)this->window->getSize().y / this->wordBackgound_t.getSize().y);
 }
 
 void Game::iniGui()
@@ -369,19 +369,6 @@ void Game::updatePollEvent()
 		{
 			this->window->close();
 		}
-		if (wordBackgound_s.getPosition().y > 650)
-		{
-			this->wordBackgound_s.setPosition(0, wordBackgound_a.getPosition().y - 650);
-		}
-		if (wordBackgound_a.getPosition().y > 650)
-		{
-			this->wordBackgound_a.setPosition(0, wordBackgound_s.getPosition().y - 650);
-		}
-
-		//ขยับไปโดย ระยะทาง = ความเร็ว * เวลาที่เปลี่ยนไป
-
-		this->wordBackgound_s.move(0, speed * deltaTime);
-		this->wordBackgound_a.move(0, speed * deltaTime);
 
 	}
 }
@@ -410,6 +397,21 @@ void Game::updateInput()
 		this->bullets.push_back(new Bullet(this->texture["Bullet"], this->player->getpos().x + this->player->getBound().width / 2.f - 20,
 			this->player->getpos().y,
 			0.f, -1.f, 12.f));*/
+}
+
+void Game::updateBackground()
+{
+this->wordBackgound_2.setPosition(0, this->wordBackgound_1.getPosition().y-650);
+this->deltaTime = clock.restart().asSeconds();
+
+if (wordBackgound_1.getPosition().y > 650)
+wordBackgound_1.setPosition(0, wordBackgound_2.getPosition().y);
+if (wordBackgound_2.getPosition().y > 650)
+wordBackgound_2.setPosition(0, wordBackgound_1.getPosition().y);
+
+this->wordBackgound_1.move(0, speed * deltaTime);
+this->wordBackgound_2.move(0, speed * deltaTime);
+
 }
 
 void Game::updateGUI()
@@ -524,7 +526,7 @@ void Game::updateEnemy()
 {
 	//spawn
 	int c = 0;
-	if (this->point >= 300)
+	if (this->point >= 500)
 	{
 		c += 0.05;
 		this->spawnTimer += 0.2f;
@@ -555,7 +557,7 @@ void Game::updateEnemy()
 		//this->enemies.push_back(new Enemy(rand() % this->window->getSize().x - 100, -100.f));
 		//this->spawnTimer = 0.f;
 	}
-	if(this->point < 300)
+	if(this->point < 500)
 	{
 		this->spawnTimer += 0.1f;
 		if (this->spawnTimer >= this->spawnTimerMax)
@@ -707,7 +709,7 @@ void Game::update()
 	this->updateitem2();
 	//this->updateCombatitem();
 	//this->updateCombat();
-
+	this->updateBackground();
 	this->updateGUI();
 	this->updateWorld();
 	this->updateHightscore();
@@ -766,8 +768,8 @@ void Game::render()
 
 void Game::renderWorld()
 {
-	this->window->draw(this->wordBackgound_s);
-	this->window->draw(this->wordBackgound_a);
+	this->window->draw(this->wordBackgound_1);
+	this->window->draw(this->wordBackgound_2);
 
 }
 

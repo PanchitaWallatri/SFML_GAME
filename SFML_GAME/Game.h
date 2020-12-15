@@ -132,8 +132,12 @@ private:
 
 	//World
 	sf::Texture wordBackgound_t;
-	sf::Sprite wordBackgound_s;
-	sf::Sprite wordBackgound_a;
+	sf::Sprite wordBackgound_1;
+	sf::Sprite wordBackgound_2;
+
+	float speed = 100.0f;  // ความเร็วของการเลื่อน 100
+	float deltaTime = 0.0f;
+	sf::Clock clock;  //ใช้ Clock นับเวลาที่เปลี่ยนไป deltaTime
 
 	void iniWorld();
 	void iniWindow(sf::RenderWindow* window);
@@ -159,6 +163,8 @@ public:
 
 	void updatePollEvent();
 	void updateInput();
+
+	void updateBackground();
 
 	void updateGUI();
 	void updateWorld();
