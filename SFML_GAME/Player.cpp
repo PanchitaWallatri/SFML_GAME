@@ -110,7 +110,7 @@ void Player::iniVariable()
 void Player::iniTexture()
 {
 	//load file
-	if (!texture.loadFromFile("D:/gamess/dog1.png"))
+	if (!texture.loadFromFile("pic/dog1.png"))
 	{
 		printf("NOT LOAD PLAYER");
 	}

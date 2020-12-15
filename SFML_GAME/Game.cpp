@@ -203,7 +203,7 @@ void Game::iniTexture()
 
 void Game::iniWorld()
 {
-	if (!this->wordBackgound_t.loadFromFile("D:/gamess/background.png"))
+	if (!this->wordBackgound_t.loadFromFile("bg/background.png"))
 	{
 		printf("NOT LOAD BACKGROUND");
 	}
@@ -217,11 +217,11 @@ void Game::iniWorld()
 
 void Game::iniSound()
 {
-	if(!this->sound1.loadFromFile("D:/gamess/SoundEffects.wav"))
+	if(!this->sound1.loadFromFile("sound/SoundEffects.wav"))
 	{
 		printf("NOT LOAD SOUND");
 	}
-	if (!this->sound2.loadFromFile("D:/gamess/SoundEffect2.wav"))
+	if (!this->sound2.loadFromFile("sound/SoundEffect2.wav"))
 	{
 		printf("NOT LOAD SOUND");
 	}
@@ -234,7 +234,7 @@ void Game::iniSound()
 void Game::iniGui()
 {
 	//load font
-	if (!this->font.loadFromFile("C:/Users/User/Downloads/SnesItalic-1G9Be.ttf"))
+	if (!this->font.loadFromFile("font/SnesItalic-1G9Be.ttf"))
 		printf("NOT LOAD FONT");
 
 	//inipoint

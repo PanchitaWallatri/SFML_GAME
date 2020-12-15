@@ -9,7 +9,7 @@ void MainMenuState::iniBackground()
 	this->background.setSize(sf::Vector2f(static_cast<float>(this->window->getSize().x), static_cast<float>(this->window->getSize().y)));
 
 
-	if (!this->bgTexture.loadFromFile("D:/gamess/main.png"))
+	if (!this->bgTexture.loadFromFile("bg/main.png"))
 	{
 		throw "Main_Menu_Background_not_load";
 	}
@@ -19,7 +19,7 @@ void MainMenuState::iniBackground()
 
 void MainMenuState::iniFont()
 {
-	if (!this->font.loadFromFile("C:/Users/User/Downloads/SnesItalic-1G9Be.ttf"))
+	if (!this->font.loadFromFile("font/SnesItalic-1G9Be.ttf"))
 	{
 		printf("Error font");
 	}

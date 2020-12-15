@@ -71,24 +71,24 @@ void Enemy::iniTexture(sf::Sprite enemies)
 
 	enemies = this->enemies;
 
-	if (!this->texture1.loadFromFile("D:/gamess/car001.png"))
+	if (!this->texture1.loadFromFile("pic/car001.png"))
 	{
 		printf("NOT ENEMY 1");
 	}
-	if (!this->texture2.loadFromFile("D:/gamess/car002.png"))
+	if (!this->texture2.loadFromFile("pic/car002.png"))
 	{
 		printf("NOT ENEMY 2");
 
 	}
-	if (!this->texture3.loadFromFile("D:/gamess/car003.png"))
+	if (!this->texture3.loadFromFile("pic/car003.png"))
 	{
 		printf("NOT ENEMY 3");
 	}
-	if (!this->texture4.loadFromFile("D:/gamess/bone.png"))
+	if (!this->texture4.loadFromFile("pic/bone.png"))
 	{
 		printf("NOT ENEMY 4");
 	}
-	if (!this->texture5.loadFromFile("D:/gamess/coin.png"))
+	if (!this->texture5.loadFromFile("pic/coin.png"))
 	{
 		printf("NOT ENEMY 5");
 	}

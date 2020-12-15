@@ -4,7 +4,7 @@ void EndGame::iniText(sf::RenderWindow* window, sf::Text pointt)
 {
 
 	//load font
-	if (!font.loadFromFile("C:/Users/User/Downloads/SnesItalic-1G9Be.ttf"))
+	if (!font.loadFromFile("font/SnesItalic-1G9Be.ttf"))
 		printf("NOT LOAD FONT");
 
 	//ini hightscoreText
@@ -31,7 +31,7 @@ void EndGame::iniText(sf::RenderWindow* window, sf::Text pointt)
 
 void EndGame::iniTextBackground(sf::RenderWindow* window)
 {
-	if (!this->bg.loadFromFile("D:/gamess/end.png"))
+	if (!this->bg.loadFromFile("bg/end.png"))
 	{
 		printf("NOT LOAD BG High");
 	}

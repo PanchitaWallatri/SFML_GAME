@@ -18,7 +18,7 @@ int main()
     std::srand(static_cast<unsigned>(time(NULL)));
 
     sf::SoundBuffer Sound1;
-    if(!Sound1.loadFromFile("D:/gamess/SEVENTEEN.wav"))
+    if(!Sound1.loadFromFile("sound/SEVENTEEN.wav"))
     {
         std::cout << "ERROR" << std::endl;
     }
