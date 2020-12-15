@@ -1,5 +1,6 @@
 //#include <iostream>
 #include "game.h"
+#include <SFML/Audio.hpp>
 //#include "player.h"
 //#include "animations.h"
 
@@ -214,6 +215,22 @@ void Game::iniWorld()
 	this->wordBackgound_2.setScale((float)this->window->getSize().x / this->wordBackgound_t.getSize().x, (float)this->window->getSize().y / this->wordBackgound_t.getSize().y);
 }
 
+void Game::iniSound()
+{
+	if(!this->sound1.loadFromFile("D:/gamess/SoundEffects.wav"))
+	{
+		printf("NOT LOAD SOUND");
+	}
+	if (!this->sound2.loadFromFile("D:/gamess/SoundEffect2.wav"))
+	{
+		printf("NOT LOAD SOUND");
+	}
+	
+	this->soundeffect.setBuffer(this->sound1);
+	this->soundeffect2.setBuffer(this->sound2);
+	
+}
+
 void Game::iniGui()
 {
 	//load font
@@ -290,6 +307,8 @@ Game::Game(sf::RenderWindow* window)
 
 	this->iniGui();
 	this->iniWorld();
+
+	this->iniSound();
 
 	this->inisystem();
 
@@ -603,6 +622,8 @@ void Game::updateEnemy()
 		//player collision
 		else if (enemy->getBound().intersects(this->player->getBound()))
 		{
+				this->soundeffect.play();
+
 			this->player->loseHP(this->enemies.at(counter)->getDamage());
 			delete this->enemies.at(counter);
 			this->enemies.erase(this->enemies.begin() + counter);
@@ -648,6 +669,7 @@ void Game::updateitem()
 		//player collision
 		else if (enemy1->getBoundItem().intersects(this->player->getBound()))
 		{
+			this->soundeffect2.play();
 			this->player->FillHP(this->items.at(counter)->getRecover());
 			delete this->items.at(counter);
 			this->items.erase(this->items.begin() + counter);
@@ -688,6 +710,7 @@ void Game::updateitem2()
 		else if (enemy2->getBoundItem2().intersects(this->player->getBound()))
 		{
 			//this->player->FillHP(this->items2.at(counter)->getRecover());
+			this->soundeffect2.play();
 			this->point += 5;
 			delete this->items2.at(counter);
 			this->items2.erase(this->items2.begin() + counter);

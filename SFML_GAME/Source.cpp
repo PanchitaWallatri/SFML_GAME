@@ -22,8 +22,10 @@ int main()
     {
         std::cout << "ERROR" << std::endl;
     }
+
     sf::Sound Sound;
     Sound.setBuffer(Sound1);
+    Sound.setVolume(20);
     Sound.setLoop(true);
     Sound.play();
     
