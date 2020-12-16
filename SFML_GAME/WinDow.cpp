@@ -2,7 +2,7 @@
 
 void WinDow::iniWindow()
 {
-	this->window = new sf::RenderWindow(sf::VideoMode(840, 650), "Space Space", sf::Style::Close | sf::Style::Titlebar);
+	this->window = new sf::RenderWindow(sf::VideoMode(840, 650), "Escape Car", sf::Style::Close | sf::Style::Titlebar);
 	this->window->setFramerateLimit(80);
 	this->window->setVerticalSyncEnabled(false);
 	this->dt = 0.f;
