@@ -31,11 +31,7 @@ void Player::iniSprite()
 
 	this->sprite.setTexture(this->texture);
 	this->sprite.setTextureRect(sf::IntRect(0, 0, A_x, A_y));
-	//this->sprite.setTexture(texture);
-	//this->sprite.setTextureRect(sf::IntRect(this->P_x * this->A_x, this->A_y , this->A_x, this->A_y));
-
-	//size
-	//this->sprite.setScale(1.f, 1.f);
+	
 	this->sprite.setPosition(410, 600);
 }
 

@@ -58,11 +58,7 @@ void Game::iniGui()
 	this->pointText.setString("POINT");
 
 
-	//update player
-	//this->playHP.setFont(font);
-	//this->playHP.setCharacterSize(50);
-	//this->playHP.setPosition(this->window->getSize().x -0, 0);
-	//this->playHP.setString("HP");
+	
 	this->playHPBar.setSize(sf::Vector2f(300.f, 25.f));
 	this->playHPBar.setFillColor(sf::Color::Red);
 	this->playHPBar.setPosition(sf::Vector2f(0, 50));
@@ -139,17 +135,7 @@ Game::~Game()
 	delete this->window;
 	delete this->player;
 
-	//delete texture
-	/*for (auto& i : this->texture)
-	{
-		delete i.second;
-	}
-	//delete bullet
-	for (auto* i : this->bullets)
-	{
-		delete i;
-	}*/
-	//delete enemy
+	
 	for (auto* i : this->enemies)
 	{
 		delete i;
@@ -163,10 +149,7 @@ Game::~Game()
 	{
 		delete i;
 	}
-	/*for (auto* i : this->itemspeed)
-	{
-		delete i;
-	}*/
+	
 
 }
 
@@ -231,25 +214,7 @@ void Game::updateInput()
 {
 	//move player
 	this->player->move(this->window);
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-	//{
-	//	this->player->move(-2.f, 0.f);
-	//	//this->player->setTexture(sf::IntRect(spriteSizeX * animationFrame, spriteSizeY * 1, spriteSizeX, spriteSizeY));
-	//}
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-	//	this->player->move(2.f, 0.f);
-	//	//this->player->setTexture(sf::IntRect(spriteSizeX * animationFrame, spriteSizeY * 2, spriteSizeX, spriteSizeY));
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-	//	this->player->move(0.f, -2.f);
-	//	//this->player->setTexture(sf::IntRect(spriteSizeX * animationFrame, spriteSizeY * 3, spriteSizeX, spriteSizeY));
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-	//	this->player->move(0.f, 2.f);
-		//this->player->setTexture(sf::IntRect(spriteSizeX * animationFrame, 0, spriteSizeX, spriteSizeY));
 
-	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && this->player->canAttack())
-		this->bullets.push_back(new Bullet(this->texture["Bullet"], this->player->getpos().x + this->player->getBound().width / 2.f - 20,
-			this->player->getpos().y,
-			0.f, -1.f, 12.f));*/
 }
 
 void Game::updateBackground()
@@ -315,23 +280,7 @@ void Game::updateCollision()
 	}
 }
 
-/*void Game::updateBullet()
-{
-	unsigned counter = 0;
-	for (auto& bullet : this->bullets)
-	{
-		bullet->update();
 
-		//เลย screen
-		if (bullet->getBound().top + bullet->getBound().height < 0.f)
-		{
-			//delete bullet
-			delete this->bullets.at(counter);
-			this->bullets.erase(this->bullets.begin() + counter);
-		}
-		counter++;
-	}
-}*/
 
 void Game::updateCombat()
 {
@@ -354,26 +303,7 @@ void Game::updateCombat()
 	}
 }
 
-/*void Game::updateCombatitem()
-{
-	for (size_t i = 0; i < this->items.size(); i++)
-	{
-		bool item_delet = false;
-		for (size_t k = 0; k < this->bullets.size() && item_delet == false; k++)
-		{
-			if (this->items[i]->getBoundItem().intersects(this->bullets[k]->getBound()))
-			{
-				item_delet = true;
-				delete this->items[i];
-				this->items.erase(this->items.begin() + i);
 
-				delete this->bullets[k];
-				this->bullets.erase(this->bullets.begin() + k);
-
-			}
-		}
-	}
-}*/
 
 void Game::updateEnemy()
 {
@@ -407,8 +337,7 @@ void Game::updateEnemy()
 				this->spawnTimer = 0.f;
 			}
 		}
-		//this->enemies.push_back(new Enemy(rand() % this->window->getSize().x - 100, -100.f));
-		//this->spawnTimer = 0.f;
+		
 	}
 	if(this->point < 500)
 	{
@@ -465,10 +394,7 @@ void Game::updateEnemy()
 		}
 		counter++;
 	}
-	/*for (auto* enemy : this->enemies)
-	{
-		enemy->update();
-	}*/
+	
 }
 
 
