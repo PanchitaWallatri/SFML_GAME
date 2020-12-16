@@ -1,58 +1,10 @@
-//#include <iostream>
 #include "enermy.h"
 
-/*Enermy::Enermy(sf::Texture* texture, sf::Vector2u imageCount, float switchTime) :
-	Animationsenermy(texture, imageCount, switchTime)
-{
-	this->enermy1Texture = *texture;
-	collum = 0;
 
-	this->enermySprite();
-
-	// random positon ในแต่ละครั้งที่ run ได้ (เอาไว้ใช้กับ object ได้ดั)
-	//this->enermy1.setPosition(rand() % 500 + 3, rand() % 500 + 5); 
-
-
-}
-
-const sf::FloatRect Enermy::getGlobalBounds() const
-{
-	return this->enermy1.getGlobalBounds();
-}
-
-
-
-void Enermy::UpdateEnermy(float deltaTime)
-{
-	Animationsenermy.Updateinteract(collum, deltaTime);
-	enermy1.setTextureRect(Animationsenermy.uvrect);
-	enermy1.move(0.f, 4.f);
-
-}
-
-void Enermy::enermySprite()
-{
-	this->enermy1.setTexture(this->enermy1Texture);
-
-
-}
-
-
-
-void Enermy::spawnEnermy(float pos_x, float pos_y)
-{
-	this->enermy1.setPosition(pos_x, pos_y);
-}
-
-void Enermy::Drawenermy(sf::RenderTarget& target)
-{
-
-	target.draw(this->enermy1);
-}*/
 
 void Enemy::iniVariation()
 {
-	this->pointConut = rand() % 5 +3; //min = 3 max = 7
+	this->pointConut = rand() % 5 +3; 
 	this->type = 0;
 	this->speed = static_cast<float>(this->pointConut);
 	this->hp = this->hpmax;
@@ -65,9 +17,7 @@ void Enemy::iniVariation()
 
 void Enemy::iniTexture(sf::Sprite enemies)
 {
-	/*this->shape.setRadius(rand() % 20 + 20);
-	this->shape.setPointCount(rand() % 20 + 3);
-	this->shape.setFillColor(sf::Color(rand()%255+1, rand() % 255 + 1, rand() % 255 + 1, 255));*/
+	
 
 	enemies = this->enemies;
 
@@ -95,57 +45,42 @@ void Enemy::iniTexture(sf::Sprite enemies)
 	
 
 	this->typeEnemy = rand() % 3;
-	//Green
+	
 	if (this->typeEnemy == 2)
 	{
 		this->enemy[2].setTexture(this->texture3);
-		//this->enemy[4].setTextureRect(sf::IntRect(0, 0, 115, 100));
+		
 		
 		this->enemies = this->enemy[2];
 		this->speed = static_cast<float>(this->pointConut / 2);
 		this->enemies.setScale(1.f, 1.f);
-		//this->enemies.setPosition();
+		
 	}
-	//Red
+	
 	if (this->typeEnemy == 1)
 	{
 		this->enemy[1].setTexture(this->texture2);
-		//this->enemy[3].setTextureRect(sf::IntRect(0, 110, 115, 130));
+		
 		
 		this->enemies = this->enemy[1];
 		this->speed = static_cast<float>(this->pointConut / 2);
 		this->enemies.setScale(1.f, 1.f);
 	}
-	////big stone
-	//if (this->typeEnemy == 2)
-	//{
-	//	this->enemy[2].setTexture(this->texture_e);
-	//	this->enemy[2].setTextureRect(sf::IntRect(120,0, 110, 100));
-
-	//	this->enemies = this->enemy[2];
-	//	this->speed = static_cast<float>(this->pointConut / 2+2 );
-	//}
-	//small stone
+	
 	if (this->typeEnemy == 0)
 	{
 		this->enemy[0].setTexture(this->texture1);
-		//this->enemy[1].setTextureRect(sf::IntRect(120, 110, 110, 100));
+		
 
 		this->enemies = this->enemy[0];
 		this->speed = static_cast<float>(this->pointConut / 2);
 		this->enemies.setScale(1.f, 1.f);
 	}
-	//
+	
 	
 }
 
-//void Enemy::iniTexture()
-//{
-//	this->shape.setRadius(this->pointConut);
-//	this->shape.setPointCount(this->pointConut);
-//	this->shape.setFillColor(sf::Color(rand() % 255 + 1, rand() % 255 + 1, rand() % 255 + 1, 255)); 
-//
-//}
+
 
 Enemy::Enemy(float pos_x, float pos_y, int i)
 {
@@ -153,8 +88,7 @@ Enemy::Enemy(float pos_x, float pos_y, int i)
 	this->iniTexture(enemies);
 	this->Item(i);
 	this->Item2(i);
-	//this->iniTexture();
-	//this->shape.setPosition(pos_x, pos_y);
+	
 	this->enemies.setPosition(pos_x, pos_y);
 	this->item.setPosition(pos_x, pos_y);
 	this->item2.setPosition(pos_x, pos_y);
@@ -167,7 +101,7 @@ void Enemy::Item(int i)
 	if (this->typeItem == 0)
 	{
 		this->item.setTexture(this->texture4);
-		//this->item.setTextureRect(sf::IntRect(230, 0, 100, 70));
+		
 		this->speed = static_cast<float>(this->pointConut / 2 + 1);
 		this->item.setScale(.7f, .7f);
 	}
@@ -179,7 +113,7 @@ void Enemy::Item2(int i)
 	if (this->typeItem2 == 0)
 	{
 		this->item2.setTexture(this->texture5);
-		//this->item.setTextureRect(sf::IntRect(230, 0, 100, 70));
+		
 		this->speed = static_cast<float>(this->pointConut / 2 + 1);
 		this->item2.setScale(.7f, .7f);
 	}

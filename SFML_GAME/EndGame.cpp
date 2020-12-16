@@ -10,47 +10,47 @@ void EndGame::iniText(sf::RenderWindow* window, sf::Text pointt)
 	//ini hightscoreText
 	this->hightscoreText.setFont(this->font);
 	this->hightscoreText.setCharacterSize(70);
-	this->hightscoreText.setPosition(window->getSize().x / 2.5f - this->hightscoreText.getGlobalBounds().width / 2.f-50, window->getSize().y / 2.f - this->hightscoreText.getGlobalBounds().height / 2.f - 40);
+	this->hightscoreText.setPosition(window->getSize().x / 2.5f - this->hightscoreText.getGlobalBounds().width / 2.f-90, window->getSize().y / 2.f - this->hightscoreText.getGlobalBounds().height / 2.f - 160);
 	this->hightscoreText.setString("HightScore");
 	this->hightscoreText.setFillColor(sf::Color::Black);
-
 	//score
 	pointt.setCharacterSize(70);
-	pointt.setPosition(window->getSize().x / 2.5f - this->hightscoreText.getGlobalBounds().width / 2.f + 80, window->getSize().y / 2.f - this->hightscoreText.getGlobalBounds().height / 2.f - 80);
+	pointt.setPosition(window->getSize().x / 2.5f - this->hightscoreText.getGlobalBounds().width / 2.f + 80, window->getSize().y / 2.f - this->hightscoreText.getGlobalBounds().height / 2.f - 210);
 	this->pointtText = pointt;
+	this->pointtText.setFillColor(sf::Color::Black);
 
 	//score1
-
 	this->pointtText1.setFont(this->font);
 	this->pointtText1.setCharacterSize(70);
-	this->pointtText1.setPosition(window->getSize().x / 2.5f - this->hightscoreText.getGlobalBounds().width / 2.f, window->getSize().y / 2.f - this->hightscoreText.getGlobalBounds().height / 2.f - 100);
+	this->pointtText1.setPosition(window->getSize().x / 2.5f - this->hightscoreText.getGlobalBounds().width / 2.f, window->getSize().y / 2.f - this->hightscoreText.getGlobalBounds().height / 2.f - 70);
 	this->pointtText1.setString("pointtText1");
 	this->pointtText1.setFillColor(sf::Color::Black);
 
 	//score2
 	this->pointtText2.setFont(this->font);
 	this->pointtText2.setCharacterSize(70);
-	this->pointtText2.setPosition(window->getSize().x / 2.5f - this->hightscoreText.getGlobalBounds().width / 2.f, window->getSize().y / 2.f - this->hightscoreText.getGlobalBounds().height / 2.f - 120);
+	this->pointtText2.setPosition(window->getSize().x / 2.5f - this->hightscoreText.getGlobalBounds().width / 2.f, window->getSize().y / 2.f - this->hightscoreText.getGlobalBounds().height / 2.f - 0);
 	this->pointtText2.setString("pointtText2");
 	this->pointtText2.setFillColor(sf::Color::Black);
 
 	//score3
 	this->pointtText3.setFont(this->font);
 	this->pointtText3.setCharacterSize(70);
-	this->pointtText3.setPosition(window->getSize().x / 2.5f - this->hightscoreText.getGlobalBounds().width / 2.f, window->getSize().y / 2.f - this->hightscoreText.getGlobalBounds().height / 2.f - 140);
+	this->pointtText3.setPosition(window->getSize().x / 2.5f - this->hightscoreText.getGlobalBounds().width / 2.f, window->getSize().y / 2.f - this->hightscoreText.getGlobalBounds().height / 2.f + 70);
 	this->pointtText3.setString("pointtText3");
 	this->pointtText3.setFillColor(sf::Color::Black);
 
 	//score4
 	this->pointtText4.setFont(this->font);
 	this->pointtText4.setCharacterSize(70);
-	this->pointtText4.setPosition(window->getSize().x / 2.5f - this->hightscoreText.getGlobalBounds().width / 2.f, window->getSize().y / 2.f - this->hightscoreText.getGlobalBounds().height / 2.f - 160);
+	this->pointtText4.setPosition(window->getSize().x / 2.5f - this->hightscoreText.getGlobalBounds().width / 2.f, window->getSize().y / 2.f - this->hightscoreText.getGlobalBounds().height / 2.f +140);
 	this->pointtText4.setString("pointtText4");
 	this->pointtText4.setFillColor(sf::Color::Black);
 
+	//score5
 	this->pointtText5.setFont(this->font);
 	this->pointtText5.setCharacterSize(70);
-	this->pointtText5.setPosition(window->getSize().x / 2.5f - this->hightscoreText.getGlobalBounds().width / 2.f, window->getSize().y / 2.f - this->hightscoreText.getGlobalBounds().height / 2.f - 180);
+	this->pointtText5.setPosition(window->getSize().x / 2.5f - this->hightscoreText.getGlobalBounds().width / 2.f, window->getSize().y / 2.f - this->hightscoreText.getGlobalBounds().height / 2.f + 210);
 	this->pointtText5.setString("pointtText5");
 	this->pointtText5.setFillColor(sf::Color::Black);
 }
@@ -63,10 +63,11 @@ void EndGame::iniTextBackground(sf::RenderWindow* window)
 	}
 
 	this->bgg.setTexture(this->bg);
-	
+	//this->bgg.setScale(0.5, 0.4);
+	//this->bgg.setTextureRect(sf::IntRect(280, 1320, 800, 600));
 }
 
-EndGame::EndGame(int score, unsigned hightscore, sf::RenderWindow* window, sf::Text pointt)
+EndGame::EndGame(int score, unsigned hightscore, sf::RenderWindow* window, sf::Text pointt,int c)
 {
 	iniText(window, pointt);
 	iniTextBackground(window);
@@ -77,8 +78,10 @@ EndGame::~EndGame()
 
 }
 
-void EndGame::update(unsigned Hightscore, unsigned point, unsigned c)
+void EndGame::update(int Hightscore, int point, unsigned c)
 {
+	////////////////////////////////////////////////read/////////////////////////////////////////////
+
 	//count
 	std::ifstream readcount;
 	readcount.open("score/scorecount.text");
@@ -92,8 +95,9 @@ void EndGame::update(unsigned Hightscore, unsigned point, unsigned c)
 	readcount.close();
 
 	//Hight score
+
 	std::ifstream readHightscore;
-	readHightscore.open("score/hightScore.text");
+	readHightscore.open("score/HightScore.text");
 	if (readHightscore.is_open())
 	{
 		while (!readHightscore.eof())
@@ -103,29 +107,17 @@ void EndGame::update(unsigned Hightscore, unsigned point, unsigned c)
 	}
 	readHightscore.close();
 
-	std::ofstream writeHightscore("score/hightScore.text");
-	if (writeHightscore.is_open())
-	{
-		if (point > Hightscore)
-		{
-			Hightscore = point;
-		}
-		writeHightscore << Hightscore;
-	}
-	writeHightscore.close();
-
 	//score
-
 	std::ifstream readscore;
-	readscore.open("score/score.text");
+	readscore.open("score/score_0.text");
 	if (readscore.is_open())
 	{
-		while (!readHightscore.eof())
+		while (!readscore.eof())
 		{
-			readHightscore >> this->score;
+			readscore >> this->score;
 		}
 	}
-	readHightscore.close();
+	readscore.close();
 
 	//score1
 	std::ifstream readscore1;
@@ -186,11 +178,38 @@ void EndGame::update(unsigned Hightscore, unsigned point, unsigned c)
 		}
 	}
 	readscore5.close();
+	/////////////////////////////cosident/////////////////////////////////////////
+
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			if (score_[j + 1] > score_[j])
+			{
+				temp = score_[j];
+				score_[j] = score_[j + 1];
+				score_[j + 1] = temp;
+			}
+		}
+
+	}
 	/////////////////////////////////////////////////////write/////////////////////////////////////////////////////
+
+	//highscore
+	std::ofstream writeHightscore("score/HightScore.text");
+	if (writeHightscore.is_open())
+	{
+		if (point > Hightscore)
+		{
+			Hightscore = point;
+		}
+		writeHightscore << Hightscore;
+	}
+	writeHightscore.close();
 
 	//score
 
-	std::ofstream writescore("score/score.text");
+	std::ofstream writescore("score/score_0.text");
 	if (writescore.is_open())
 	{
 		this->score = point;
@@ -266,6 +285,7 @@ void EndGame::update(unsigned Hightscore, unsigned point, unsigned c)
 			writescore5 << this->score_[4];
 		}
 	}
+
 	writeHightscore.close();
 	std::stringstream dd;
 	dd << "Hight score  " << Hightscore;
@@ -280,33 +300,34 @@ void EndGame::update(unsigned Hightscore, unsigned point, unsigned c)
 	/////////////////scorecount/////////////////////////
 
 	std::stringstream ss1;
-	ss1 << "score_1 : " << this->score_[0];
+	ss1 << "score1  " << this->score_[0];
 	this->pointtText1.setString(ss1.str());
 	this->pointtText1.setFillColor(sf::Color::Black);
 
 	std::stringstream ss2;
-	ss2 << "score_2 : " << this->score_[1];
+	ss2 << "score2  " << this->score_[1];
 	this->pointtText2.setString(ss2.str());
 	this->pointtText2.setFillColor(sf::Color::Black);
 
 	std::stringstream ss3;
-	ss3 << "score_3 : " << this->score_[2];
+	ss3 << "score3  " << this->score_[2];
 	this->pointtText3.setString(ss3.str());
 	this->pointtText3.setFillColor(sf::Color::Black);
 
 	std::stringstream ss4;
-	ss4 << "score_4 : " << this->score_[3];
+	ss4 << "score4  " << this->score_[3];
 	this->pointtText4.setString(ss4.str());
 	this->pointtText4.setFillColor(sf::Color::Black);
 
 	std::stringstream ss5;
-	ss5 << "score_5 : " << this->score_[4];
+	ss5 << "score5  " << this->score_[4];
 	this->pointtText5.setString(ss5.str());
 	this->pointtText5.setFillColor(sf::Color::Black);
 
 
+	////////////////////////////////////////////cosident//////////////////////////////////////////
 
-	////////////////////////////////////////////cosident/////////////////////////////////////////
+
 }
 
 void EndGame::render(sf::RenderTarget* target)
@@ -320,5 +341,4 @@ void EndGame::render(sf::RenderTarget* target)
 	target->draw(this->pointtText3);
 	target->draw(this->pointtText4);
 	target->draw(this->pointtText5);
-
 }

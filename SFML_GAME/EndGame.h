@@ -20,6 +20,8 @@ private:
 
 	int score;
 
+	int temp;
+
 	int score_[5];
 
 
@@ -33,8 +35,8 @@ private:
 
 public:
 
-	EndGame(int score, unsigned hightscore, sf::RenderWindow* window, sf::Text pointt);
+	EndGame(int score, unsigned hightscore, sf::RenderWindow* window, sf::Text pointt,int c);
 	virtual ~EndGame();
-	void update(unsigned Hightscore, unsigned point, unsigned c);
+	void update(int Hightscore, int point, unsigned c);
 	void render(sf::RenderTarget* target);
 };

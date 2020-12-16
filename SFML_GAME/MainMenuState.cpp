@@ -44,12 +44,12 @@ void MainMenuState::iniButton()
 {
 
 	this->button["Game_State"] = new Button(350, 300, 150, 80,
-		&this->font, "Start", 65,
+		&this->font, "Start", 80,
 		sf::Color::Black, sf::Color(70, 70, 70, 200), sf::Color(20, 20, 20, 50),
 		sf::Color(150, 150, 150, 0), sf::Color(70, 70, 70, 0), sf::Color(20, 20, 20, 0));
 
 	this->button["Exit_State"] = new Button(350, 400, 150, 80,
-		&this->font, "Quit", 65,
+		&this->font, "Quit", 80,
 		sf::Color::Black, sf::Color(70, 70, 70, 200), sf::Color(20, 20, 20, 50),
 		sf::Color(150, 150, 150, 0), sf::Color(70, 70, 70, 0), sf::Color(20, 20, 20, 0));
 }
