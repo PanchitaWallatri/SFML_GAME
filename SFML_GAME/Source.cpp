@@ -8,6 +8,7 @@ using namespace sf;
 int main()
 {
    
+
     std::srand(static_cast<unsigned>(time(NULL)));
 
     sf::SoundBuffer Sound1;
